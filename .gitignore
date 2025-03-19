@@ -125,3 +125,5 @@ dmypy.json
 src/db.sqlite3
 /src/assets
 /static
+/src/account/migrations
+/src/blog/migrations
