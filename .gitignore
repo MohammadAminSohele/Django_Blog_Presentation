@@ -127,3 +127,4 @@ src/db.sqlite3
 /static
 /src/account/migrations
 /src/blog/migrations
+/media
