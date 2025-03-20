@@ -4,6 +4,10 @@ from django.utils import timezone
 
 from account.models import User
 
+class ArticleManager(models.Manager):
+    def published(self):
+        return self.filter(status='p')
+
 # Create your models here.
 class Catagory(models.Model):
     parent=models.ForeignKey('self',default=None,blank=True,null=True,on_delete=models.CASCADE,related_name='children',verbose_name='زیر دسته')
@@ -37,6 +41,8 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+    
+    objects=ArticleManager()
     
     class Meta:
         verbose_name='مقاله'
