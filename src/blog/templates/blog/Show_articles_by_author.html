@@ -1,4 +1,5 @@
 {% extends 'shared/_MainLayout.html' %}
+
 {% load static %}
 
 {% block header %}
@@ -15,13 +16,12 @@
         </div>
     </header>
 {% endblock header %}
-    
 
 {% block content %}
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
-                {% for article in Article %}
+                {% for article in author.articles.published %}
                 <!-- Post preview-->
                 <div class="post-preview">
                     <a href="{% url 'blog:ArticleDetail' article.slug %}">
@@ -29,8 +29,7 @@
                         <h3 class="post-subtitle">{{article.description|striptags}}</h3>
                     </a>
                     <p class="post-meta">
-                        <a href="{% url 'blog:AuthorList' article.author.username %}">نوشته شده توسط : {{article.author.last_name}}
-                        </a>
+                        نوشته شده توسط : {{article.author.last_name}}
                         <br>
                         {{article.Jpublish}}
                         {% for cat in article.catagory_published.all %}
