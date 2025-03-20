@@ -42,10 +42,13 @@ class Article(models.Model):
     def __str__(self):
         return self.title
     
+    def catagory_published(self):
+        return self.cataogry.filter(status=True)
+    
     objects=ArticleManager()
     
     class Meta:
         verbose_name='مقاله'
         verbose_name_plural='مقالات'
-        ordering=['-published']
-        
+        ordering=['-published']    
+    

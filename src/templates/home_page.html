@@ -32,6 +32,10 @@
                         Posted by
                         <a href="#!">Start Bootstrap</a>
                         on September 24, 2023
+                        {% for cat in article.catagory_published.all %}
+                            <br>
+                            # {{cat.title}}
+                        {% endfor %}
                     </p>
                 </div>
                 <!-- Divider-->
