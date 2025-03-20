@@ -3,6 +3,7 @@ from django.db import models
 from django.utils import timezone
 
 from account.models import User
+from extentions.utils import JalaliConverter
 
 class ArticleManager(models.Manager):
     def published(self):
@@ -44,6 +45,9 @@ class Article(models.Model):
     
     def catagory_published(self):
         return self.cataogry.filter(status=True)
+    
+    def Jpublish(self):
+        return JalaliConverter(self.published)
     
     objects=ArticleManager()
     

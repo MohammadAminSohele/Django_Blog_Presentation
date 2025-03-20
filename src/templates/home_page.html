@@ -29,9 +29,9 @@
                         <h3 class="post-subtitle">{{article.description|striptags}}</h3>
                     </a>
                     <p class="post-meta">
-                        Posted by
-                        <a href="#!">Start Bootstrap</a>
-                        on September 24, 2023
+                        {% comment %} Posted by {% endcomment %}
+                        {% comment %} <a href="#!">Start Bootstrap</a> {% endcomment %}
+                        {{article.Jpublish}}
                         {% for cat in article.catagory_published.all %}
                             <br>
                             # {{cat.title}}
