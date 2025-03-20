@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.views.generic import ListView
+from django.shortcuts import get_object_or_404
+from django.views.generic import ListView,DetailView
 
 from .models import Article
 
@@ -16,4 +16,8 @@ class ArticleList(ListView):
         context = super().get_context_data(**kwargs)
         context["Article"] = articles
         return context
-    
+
+class ArticleDetail(DetailView):
+    def get_object(self):
+        slug=self.kwargs.get('slug')
+        return get_object_or_404(Article.objects.published(),slug=slug)
