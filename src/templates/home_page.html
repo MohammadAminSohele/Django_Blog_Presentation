@@ -24,13 +24,13 @@
                 {% for article in Article %}
                 <!-- Post preview-->
                 <div class="post-preview">
-                    <a href="post.html">
+                    <a href="{% url 'blog:ArticleDetail' article.slug %}">
                         <h2 class="post-title">{{article.title}}</h2>
                         <h3 class="post-subtitle">{{article.description|striptags}}</h3>
                     </a>
                     <p class="post-meta">
-                        {% comment %} Posted by {% endcomment %}
-                        {% comment %} <a href="#!">Start Bootstrap</a> {% endcomment %}
+                        نوشته شده توسط : {{article.author.last_name}}
+                        <br>
                         {{article.Jpublish}}
                         {% for cat in article.catagory_published.all %}
                             <br>
