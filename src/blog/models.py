@@ -5,6 +5,10 @@ from django.utils import timezone
 from account.models import User
 from extentions.utils import JalaliConverter
 
+class CatagoryManager(models.Manager):
+    def active(self):
+        return self.filter(status=True)
+
 class ArticleManager(models.Manager):
     def published(self):
         return self.filter(status='p')
@@ -19,6 +23,8 @@ class Catagory(models.Model):
 
     def __str__(self):
         return self.title
+    
+    objects=CatagoryManager()
     
     class Meta:
         verbose_name='دسته بندی'

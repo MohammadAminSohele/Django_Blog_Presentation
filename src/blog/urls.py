@@ -6,6 +6,7 @@ app_name='blog'
 
 urlpatterns = [
     path('',views.ArticleList.as_view(),name='home_page'),
-    path('<slug:username>',views.AuthorList.as_view(),name='AuthorList'),
     path('<slug:slug>',views.ArticleDetail.as_view(),name='ArticleDetail'),
+    path('author/<slug:username>',views.AuthorList.as_view(),name='AuthorList'),
+    path('catagory/<slug:slug>',views.Articles_By_catagory.as_view(),name='Articles_By_catagory'),
 ]
