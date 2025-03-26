@@ -1,6 +1,10 @@
 {% extends 'shared/_MainLayout.html' %}
 {% load static %}
 
+{% block title %}{% block title-meta %}
+	لیست مقالات
+{% endblock %}{% endblock %}
+
 {% block header %}
     <header class="masthead" style="background-image: url('{% static 'assets/img/home-bg.jpg' %}')">
         <div class="container position-relative px-4 px-lg-5">
