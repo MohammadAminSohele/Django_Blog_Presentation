@@ -50,9 +50,6 @@ class Article(models.Model):
     def __str__(self):
         return self.title
     
-    def catagory_published(self):
-        return self.cataogry.filter(status=True)
-    
     def Jpublish(self):
         return JalaliConverter(self.published)
     

@@ -34,7 +34,7 @@
                         نوشته شده توسط : {{article.author.last_name}}
                         <br>
                         {{article.Jpublish}}
-                        {% for cat in article.catagory_published.all %}
+                        {% for cat in article.active %}
                             <br>
                             # {{cat.title}}
                         {% endfor %}

@@ -27,7 +27,7 @@
                         <br>
                         {{article.Jpublish}}
                         <br>
-                        {% for cat in article.catagory_published.all %}
+                        {% for cat in article.cataogry.active %}
                             <a href="{% url 'blog:Articles_By_catagory' cat.slug %}"># {{cat.title}}</a>
                         {% endfor %}
                     </p>
