@@ -1,0 +1,15 @@
+from django import template
+
+from ..models import Catagory
+
+register = template.Library()
+
+@register.simple_tag
+def title():
+    return "وبلاگ جنگویی"
+
+@register.inclusion_tag("shared/category_navbar.html")
+def category_navbar():
+    return {
+        'catagory':Catagory.objects.filter(status=True)
+    }

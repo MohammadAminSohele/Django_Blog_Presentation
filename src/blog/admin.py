@@ -23,11 +23,22 @@ def make_draft(modeladmin, request, queryset):
 make_draft.short_description ="مقالات انتخاب شده پیش نویس شد"
 
 class ArticleManager(admin.ModelAdmin):
-    list_display=('slug','author','status')
+    list_display = ('title','slug','status','Jpublish','thumbnail_tag')
+    list_filter = ('published','status')
+    search_fields = ('title', 'description')
+    prepopulated_fields = {'slug': ('title',)}
+    ordering = ['-status', '-published']
     actions=[make_published,make_draft]
 
 class CatagoryManager(admin.ModelAdmin):
-    list_display=('title','position','id','parent')
+    list_display = ('position', 'title','slug', 'parent','status')
+    list_filter = (['status'])
+    search_fields = ('title', 'slug')
+    prepopulated_fields = {'slug': ('title',)}
+
+    def category_to_str(self, obj):
+        return ". ".format(catagory.title for catagory in obj.catagory_published())
+    category_to_str.short_description = "دسته‌بندی"
 
 admin.site.register(models.Article,ArticleManager)
 admin.site.register(models.Catagory,CatagoryManager)
