@@ -9,9 +9,9 @@
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="post-heading">
                     <h1>{{object.title}}</h1>
-                    <h2 class="subheading">{{object.description}}</h2>
+                    <h2 class="subheading">{{object.description|truncatechars:100}}</h2>
                     <span class="meta">
-                        نوشته شده توسط : {{object.author.last_name}}
+                        <a style="color: red;" href="{% url 'blog:AuthorList' object.author %}">نوشته شده توسط : {{object.author.last_name}}</a>
                         <br><br>
                         {{object.Jpublish}}
                     </span>
@@ -24,15 +24,14 @@
 
 
 {% block content %}
-    <article class="mb-4">
-        <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-md-10 col-lg-8 col-xl-7">
-                    <h2 class="section-heading">{{object.title}}</h2>
-                    <blockquote class="blockquote">{{object.description}}</blockquote>
-                    <p>نوشته شده توسط : {{object.author.last_name}}</p>
-                </div>
-            </div>
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto text-justify">
+          {{object.description|linebreaks}}
         </div>
-    </article>
+      </div>
+    </div>
+  </article>
 {% endblock content %}
