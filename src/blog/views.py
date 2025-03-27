@@ -21,7 +21,7 @@ class AuthorList(ListView):
     
 class ArticleList(ListView):
     paginate_by=3
-    template_name='home_page.html'
+    template_name='blog/article_list.html'
     def get_queryset(self):
         global articles
         articles=Article.objects.published()
