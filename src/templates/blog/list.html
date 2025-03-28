@@ -35,11 +35,12 @@
               </h3>
             </a>
             <p class="post-meta">نوشته شده توسط
-              <a href="{% url 'blog:AuthorList' article.author %}">{{article.author.get_full_name}}</a>
-              {{article.jpublish}}</p>
+              <a href="{% url 'blog:AuthorList' article.author %}">{{article.author.get_full_name}}</a><br><br>
+              {{article.Jpublish}}
+            </p>
             <div>
-              {% for cat in article.category.active %}
-                <a href="{% url 'blog:category' cat.slug %}">#{{cat.title}}</a>
+              {% for cat in article.cataogry.active %}
+                <a href="{% url 'blog:Articles_By_catagory' cat.slug %}">#{{cat.title}}</a>
               {% endfor %}
             </div>
           </div>

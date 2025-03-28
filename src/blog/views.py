@@ -28,7 +28,7 @@ class ArticleList(ListView):
         return articles
     def get_context_data(self, **kwargs) -> dict[str]:
         context = super().get_context_data(**kwargs)
-        context["Article"] = articles
+        context["object_list"] = articles
         return context
 
 class ArticleDetail(DetailView):

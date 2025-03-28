@@ -13,7 +13,10 @@
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="site-heading">
             <h1>{{object.title}}</h1>
-            <time>{{object.jpublish}}</time>
+            <time>{{object.Jpublish}}</time><br>
+            <h3>
+              <a style="color: red;" href="{% url 'blog:AuthorList' object.author %}">{{object.author.get_full_name}}</a>
+            </h3>
           </div>
         </div>
       </div>
