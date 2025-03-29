@@ -47,6 +47,11 @@ class Article(models.Model):
     updated=models.DateTimeField(auto_now=True,verbose_name='تاریخ ویرایش')
     status=models.CharField(max_length=1,choices=STATUS_CHOICES,verbose_name='حالت')
 
+    class Meta:
+        verbose_name='مقاله'
+        verbose_name_plural='مقالات'
+        ordering=['-published']    
+
     def __str__(self):
         return self.title
     
@@ -58,13 +63,8 @@ class Article(models.Model):
     thumbnail_tag.short_description='عکس'
 
     def category_to_str(self):
-        return ". ".format([catagory.title for catagory in self.cataogry.active()])
+        return "، ".join([cataogry.title for cataogry in self.cataogry.active()])
     category_to_str.short_description = "دسته‌بندی"
     
     objects=ArticleManager()
-    
-    class Meta:
-        verbose_name='مقاله'
-        verbose_name_plural='مقالات'
-        ordering=['-published']    
     
