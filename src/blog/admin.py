@@ -36,9 +36,5 @@ class CatagoryManager(admin.ModelAdmin):
     search_fields = ('title', 'slug')
     prepopulated_fields = {'slug': ('title',)}
 
-    def category_to_str(self, obj):
-        return ". ".format(catagory.title for catagory in obj.active())
-    category_to_str.short_description = "دسته‌بندی"
-
 admin.site.register(models.Article,ArticleManager)
 admin.site.register(models.Catagory,CatagoryManager)
