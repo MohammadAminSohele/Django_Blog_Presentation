@@ -2,6 +2,7 @@ from django.db import models
 
 from django.utils import timezone
 from django.utils.html import format_html
+from django.urls import reverse
 
 from account.models import User
 from extentions.utils import JalaliConverter
@@ -22,15 +23,15 @@ class Catagory(models.Model):
     status=models.BooleanField(default=True,verbose_name='فعال/غیرفعال')
     position=models.IntegerField(default=1,verbose_name='اولویت')
 
-    def __str__(self):
-        return self.title
-    
-    objects=CatagoryManager()
-    
     class Meta:
         verbose_name='دسته بندی'
         verbose_name_plural='دسته بندی ها'
         ordering=['parent__id','position']
+
+    def __str__(self):
+        return self.title
+    
+    objects=CatagoryManager()
 class Article(models.Model):
     STATUS_CHOICES=(
         ('p','پابلیش'),
@@ -54,6 +55,9 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse('account:home')
     
     def Jpublish(self):
         return JalaliConverter(self.published)
