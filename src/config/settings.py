@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'widget_tweaks',
+    "crispy_forms",
+    "crispy_bootstrap4",
 
     'blog',
     'account'
@@ -134,9 +136,12 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = BASE_DIR.parent / 'media'
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'account.User'
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
