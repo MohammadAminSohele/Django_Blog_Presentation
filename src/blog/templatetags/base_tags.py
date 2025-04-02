@@ -13,3 +13,12 @@ def category_navbar():
     return {
         'catagory':Catagory.objects.filter(status=True)
     }
+
+@register.inclusion_tag("registration/partials/link.html")
+def Link(request, link_name, content):
+	return {
+		"request": request,
+		"Link_name": link_name,
+		"Link": "account:{}".format(link_name),
+		"Content": content,
+	}
