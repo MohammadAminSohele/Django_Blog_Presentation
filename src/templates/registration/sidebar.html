@@ -36,13 +36,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{% url 'account:home' %}" class="nav-link active">
+                <a href="{% url 'account:home' %}" class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
                   <i class="fa fa-list nav-icon"></i>
                   <p>لیست مقالات</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{% url 'account:ArticleCreate' %}" class="nav-link">
+                <a href="{% url 'account:ArticleCreate' %}" class="nav-link {% if request.resolver_match.url_name == 'ArticleCreate' %}active{% endif %}">
                   <i class="fa fa-edit nav-icon"></i>
                   <p>افزودن مقاله</p>
                 </a>
