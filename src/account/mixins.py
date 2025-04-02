@@ -1,5 +1,8 @@
 
 from django.http import Http404
+from django.shortcuts import get_object_or_404
+
+from blog.models import Article
 
 class FieldsMixin():
     def dispatch(self, request, *args, **kwargs):
@@ -14,7 +17,7 @@ class FieldsMixin():
                 'description','images','published'
                 ]
         else:
-            raise Http404("شما مجوز به دیدن این صفحه را ندارید")
+            raise Http404("شما مجوز دیدن این صفحه را ندارید")
         return super().dispatch(request, *args, **kwargs)
     
 class FormValidMixin():
@@ -26,3 +29,12 @@ class FormValidMixin():
             self.obj.author=self.request.user
             self.obj.status='d'
         return super().form_valid(form)
+    
+class Author_Access_Mixin():
+    def dispatch(self, request,pk, *args, **kwargs):
+        article=get_object_or_404(Article,pk=pk)
+        if article.author==request.user and article.status=='d' or\
+        request.user.is_superuser:
+            return super().dispatch(request, *args, **kwargs)
+        else:
+            raise Http404("شما مجوز دیدن این صفحه را ندارید")
