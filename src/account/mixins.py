@@ -38,3 +38,10 @@ class Author_Access_Mixin():
             return super().dispatch(request, *args, **kwargs)
         else:
             raise Http404("شما مجوز دیدن این صفحه را ندارید")
+
+class SuperUser_Access_Mixin():
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_superuser:
+            return super().dispatch(request, *args, **kwargs)
+        else:
+            raise Http404("شما مجوز دیدن این صفحه را ندارید")

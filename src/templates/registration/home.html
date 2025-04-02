@@ -30,7 +30,7 @@
                   <a href="{% url 'account:ArticleUpdate' article.pk %}">{{article.title}}</a>
                 {% else %}
                   {{article.title}}
-                {% endif %}
+                {% endif %}  
               </td>
 							<td><img src="{{article.images.url}}" width="120"></td>
 							<td>{{article.category_to_str}}</td>
@@ -44,6 +44,9 @@
 								{% else %}
 									<span class="badge badge-danger">پیش‌نویس</span>
 								{% endif %}
+                {% if user.is_superuser %}
+                  <a class="badge text-danger" href="{% url 'account:Article_Delete' article.pk %}">حذف</a>
+                {% endif %}
 							</td>
 	                    </tr>
 	                  {% endfor %}
