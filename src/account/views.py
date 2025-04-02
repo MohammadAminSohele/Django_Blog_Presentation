@@ -1,5 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
+from django.contrib.auth import logout
+from django.shortcuts import redirect
 
 from blog.models import Article
 
@@ -16,6 +18,9 @@ from .mixins import (
     SuperUser_Access_Mixin
 )
 
+def LogoutView(request):
+    logout(request)
+    return redirect('account:login')
 # Create your views here.
 class ArticleList(LoginRequiredMixin,ListView):
     template_name="registration/home.html"
