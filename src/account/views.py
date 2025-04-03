@@ -5,6 +5,7 @@ from django.shortcuts import redirect
 
 from blog.models import Article
 from .models import User
+from .forms import ProfileForm
 
 from django.views.generic import (
     ListView,
@@ -47,7 +48,7 @@ class Article_Delete(SuperUser_Access_Mixin,DeleteView):
 class Profile(UpdateView):
      model = User
      template_name = "registration/profile.html"
-     fields=['username','email','first_name','last_name','special_user','is_author']
+     form_class=ProfileForm
      success_url=reverse_lazy('account:profile')
      def get_object(self):
          return User.objects.get(pk=self.request.user.pk)
