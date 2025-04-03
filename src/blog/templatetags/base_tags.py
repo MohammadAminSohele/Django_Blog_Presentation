@@ -15,10 +15,11 @@ def category_navbar():
     }
 
 @register.inclusion_tag("registration/partials/link.html")
-def Link(request, link_name, content):
+def Link(request, link_name, content,classes):
 	return {
 		"request": request,
 		"Link_name": link_name,
 		"Link": "account:{}".format(link_name),
 		"Content": content,
+		"classes": classes,
 	}

@@ -9,11 +9,11 @@ class FieldsMixin():
         if request.user.is_superuser:
             self.fields = [
                 'author','title','slug','cataogry',
-                'description','images','published','status'
+                'description','images','published','is_special','status'
                 ]
         elif request.user.is_author:
             self.fields = [
-                'title','slug','cataogry',
+                'title','is_special','slug','cataogry',
                 'description','images','published'
                 ]
         else:

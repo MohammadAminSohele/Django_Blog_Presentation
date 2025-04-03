@@ -23,7 +23,7 @@ def make_draft(modeladmin, request, queryset):
 make_draft.short_description ="مقالات انتخاب شده پیش نویس شد"
 
 class ArticleManager(admin.ModelAdmin):
-    list_display = ('title','slug','status','author','Jpublish','thumbnail_tag')
+    list_display = ('title','slug','is_special','status','author','Jpublish','thumbnail_tag')
     list_filter = ('published','status','author')
     search_fields = ('title', 'description')
     prepopulated_fields = {'slug': ('title',)}
