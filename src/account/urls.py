@@ -6,7 +6,8 @@ from .views import (
     ArticleCreate,
     ArticleUpdate,
     Article_Delete,
-    LogoutView
+    LogoutView,
+    Profile
 )
 
 app_name = 'account'
@@ -29,4 +30,5 @@ urlpatterns += [
 	path('article/create', ArticleCreate.as_view(), name="ArticleCreate"),
 	path('article/update/<int:pk>', ArticleUpdate.as_view(), name="ArticleUpdate"),
 	path('article/delete/<int:pk>', Article_Delete.as_view(), name="Article_Delete"),
+	path('profile/', Profile.as_view(), name="profile"),
 ]
