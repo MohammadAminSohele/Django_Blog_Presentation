@@ -35,7 +35,9 @@ class Catagory(models.Model):
 class Article(models.Model):
     STATUS_CHOICES=(
         ('p','پابلیش'),
-        ('d','پیش نویس')
+        ('d','پیش نویس'),
+        ('i', "در حال بررسی"),
+        ('b', "برگشت داده شده"),
     )
     author=models.ForeignKey(User,null=True,on_delete=models.SET_NULL,related_name='articles',verbose_name='نویسنده')
     title=models.CharField(max_length=100,verbose_name='عنوان')
