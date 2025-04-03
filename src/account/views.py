@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from django.contrib.auth import logout
 from django.shortcuts import redirect
@@ -45,7 +46,7 @@ class Article_Delete(SuperUser_Access_Mixin,DeleteView):
     success_url=reverse_lazy('account:home')
     template_name="registration/article_confirm_delete.html"
 
-class Profile(UpdateView):
+class Profile(LoginRequiredMixin,UpdateView):
      model = User
      template_name = "registration/profile.html"
      form_class=ProfileForm
@@ -60,3 +61,11 @@ class Profile(UpdateView):
             }
         )
         return kwargs
+     
+class Login(LoginView):
+    def get_success_url(self):
+        user = self.request.user
+        if user.is_superuser:
+            return reverse_lazy('account:home')
+        else:
+            return reverse_lazy('account:profile')
