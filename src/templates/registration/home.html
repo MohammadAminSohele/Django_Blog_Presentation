@@ -44,6 +44,7 @@
 									<a target="_blank" class="badge badge-primary" href="{% url 'blog:ArticleDetail' article.slug %}">نمایش مقاله در سایت</a>
 								{% else %}
 									<span class="badge badge-danger">پیش‌نویس</span>
+                  <a target="_blank" class="badge badge-secondary" href="{% url 'blog:ArticlePreView' article.pk %}">پیشنمایش</a>
 								{% endif %}
                 {% if user.is_superuser %}
                   <a class="badge text-danger" href="{% url 'account:Article_Delete' article.pk %}">حذف</a>
