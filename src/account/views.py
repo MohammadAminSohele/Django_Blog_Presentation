@@ -18,14 +18,15 @@ from .mixins import (
     FieldsMixin,
     FormValidMixin,
     Author_Access_Mixin,
-    SuperUser_Access_Mixin
+    SuperUser_Access_Mixin,
+    AuthorsAccessMixin,
 )
 
 def LogoutView(request):
     logout(request)
     return redirect('account:login')
 # Create your views here.
-class ArticleList(LoginRequiredMixin,ListView):
+class ArticleList(AuthorsAccessMixin,ListView):
     template_name="registration/home.html"
     def get_queryset(self):
         if self.request.user.is_superuser:
@@ -33,7 +34,7 @@ class ArticleList(LoginRequiredMixin,ListView):
         else:
             return Article.objects.filter(author=self.request.user)
 
-class ArticleCreate(LoginRequiredMixin,FieldsMixin,FormValidMixin, CreateView):
+class ArticleCreate(AuthorsAccessMixin,FieldsMixin,FormValidMixin, CreateView):
     model = Article
     template_name = "registration/article-create-update.html"
 
