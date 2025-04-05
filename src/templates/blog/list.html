@@ -30,6 +30,9 @@
               <h2 class="post-title">
                 {{article.title}}
               </h2>
+              {% if article.is_special %}
+                  <span class="badge badge-danger" style="font-size: 14px;">ویژه</span>
+                {% endif %}
               <h3 class="post-subtitle">
                 {{article.description|striptags|truncatewords:30}}
               </h3>
