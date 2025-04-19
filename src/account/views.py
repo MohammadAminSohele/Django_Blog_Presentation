@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView , PasswordChangeView
 from django.urls import reverse_lazy
 from django.contrib.auth import logout
 from django.shortcuts import redirect
@@ -21,6 +21,9 @@ from .mixins import (
     SuperUser_Access_Mixin,
     AuthorsAccessMixin,
 )
+
+class Password_Change(PasswordChangeView):
+    success_url = reverse_lazy('account:password_change_done')
 
 def LogoutView(request):
     logout(request)
