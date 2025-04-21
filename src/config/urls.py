@@ -20,6 +20,7 @@ from django.urls import path,include
 from django.conf.urls.static import static
 
 from .import settings
+from account.views import Login, LogoutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +28,9 @@ urlpatterns = [
 
 urlpatterns+=[
     path('',include('blog.urls')),
+    path('logout/',LogoutView, name='logout'),
+    path('', include('django.contrib.auth.urls')),
+    path('login/', Login.as_view(), name='login'),
     path('account/',include('account.urls')),
 ]
 

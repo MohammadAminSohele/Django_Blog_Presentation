@@ -49,3 +49,5 @@ class AuthorsAccessMixin():
                 return super().dispatch(request, *args, **kwargs)
             else:
                 return redirect('account:profile')
+        else:
+            return redirect("login")

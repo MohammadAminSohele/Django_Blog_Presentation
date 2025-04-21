@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView , PasswordChangeView
+from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from django.contrib.auth import logout
 from django.shortcuts import redirect
@@ -22,12 +22,9 @@ from .mixins import (
     AuthorsAccessMixin,
 )
 
-class Password_Change(PasswordChangeView):
-    success_url = reverse_lazy('account:password_change_done')
-
 def LogoutView(request):
     logout(request)
-    return redirect('account:login')
+    return redirect('login')
 # Create your views here.
 class ArticleList(AuthorsAccessMixin,ListView):
     template_name="registration/home.html"
