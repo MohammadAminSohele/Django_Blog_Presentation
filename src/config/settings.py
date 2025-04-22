@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     "crispy_forms",
     "crispy_bootstrap4",
+    'django_gravatar',
 
     'blog',
     'account'
