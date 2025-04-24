@@ -24,6 +24,7 @@ from account.views import Login, LogoutView , Register , activate
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('comment/', include('comment.urls')),
 ]
 
 urlpatterns+=[

@@ -3,9 +3,11 @@ from django.db import models
 from django.utils import timezone
 from django.utils.html import format_html
 from django.urls import reverse
+from django.contrib.contenttypes.fields import GenericRelation
 
 from account.models import User
 from extentions.utils import JalaliConverter
+from comment.models import Comment
 
 class CatagoryManager(models.Manager):
     def active(self):
@@ -50,6 +52,7 @@ class Article(models.Model):
     updated=models.DateTimeField(auto_now=True,verbose_name='تاریخ ویرایش')
     is_special = models.BooleanField(default=False, verbose_name="مقاله ویژه")
     status=models.CharField(max_length=1,choices=STATUS_CHOICES,verbose_name='حالت')
+    comments = GenericRelation(Comment)
 
     class Meta:
         verbose_name='مقاله'

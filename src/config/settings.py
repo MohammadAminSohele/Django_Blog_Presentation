@@ -52,7 +52,8 @@ INSTALLED_APPS = [
     'django_gravatar',
 
     'blog',
-    'account'
+    'account',
+    'comment',
 ]
 
 MIDDLEWARE = [
