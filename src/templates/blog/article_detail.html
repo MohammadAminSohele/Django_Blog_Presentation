@@ -1,5 +1,6 @@
 {% extends 'blog/_MainLayout.html' %}
 {% load comment_tags %}
+{% load ratings %}
 
 {% block title %}
   {{object.title}}
@@ -18,6 +19,7 @@
               <span class="badge badge-danger" style="font-size: 14px;">ویژه</span>
             {% endif %}
             <time>{{object.Jpublish}}</time>
+            <div>{% ratings object %}</div>
           </div>
         </div>
       </div>

@@ -33,6 +33,7 @@ urlpatterns+=[
     path('', include('django.contrib.auth.urls')),
     path('login/', Login.as_view(), name='login'),
     path('register/', Register.as_view(), name='register'),
+    re_path(r'^ratings/', include('star_ratings.urls', namespace='ratings')),
     path('activate/<str:uidb64>/<str:token>/', activate, name='activate'),
     path('account/',include('account.urls')),
 ]

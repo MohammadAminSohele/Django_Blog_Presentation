@@ -1,4 +1,5 @@
 {% extends 'blog/_MainLayout.html' %}
+{% load ratings %}
 
 {% load static %}
 
@@ -30,6 +31,7 @@
               <h2 class="post-title">
                 {{article.title}}
               </h2>
+              <div>{% ratings article %}</div>
               {% if article.is_special %}
                   <span class="badge badge-danger" style="font-size: 14px;">ویژه</span>
                 {% endif %}
