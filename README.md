@@ -13,7 +13,10 @@ python manage.py makemigrations blog account
 python manage.py migrate
 ```
 ```
-python manage.py python manage.py createsuperuser
+python manage.py createsuperuser
+```
+```
+python manage.py runserver
 ```
 to show project click on this link redirect login page [login page](http://127.0.0.1:8000/account/login/).
 
