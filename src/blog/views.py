@@ -35,7 +35,11 @@ class ArticleList(ListView):
 class ArticleDetail(DetailView):
     def get_object(self):
         slug=self.kwargs.get('slug')
-        return get_object_or_404(Article.objects.published(),slug=slug)
+        article= get_object_or_404(Article.objects.published(),slug=slug)
+        ip_address = self.request.user.IP_address
+        if not ip_address in article.hint.all():
+            article.hint.add(ip_address)
+        return article
 
 class ArticlePreView(Author_Access_Mixin,DetailView):
     def get_object(self):
