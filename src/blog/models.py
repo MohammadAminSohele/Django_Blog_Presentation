@@ -17,6 +17,9 @@ class ArticleManager(models.Manager):
     def published(self):
         return self.filter(status='p')
 
+class IP_Address(models.Model):
+    IP_address=models.GenericIPAddressField(verbose_name='آدرس IP',unique=True)
+
 # Create your models here.
 class Catagory(models.Model):
     parent=models.ForeignKey('self',default=None,blank=True,null=True,on_delete=models.CASCADE,related_name='children',verbose_name='زیر دسته')
@@ -53,6 +56,7 @@ class Article(models.Model):
     is_special = models.BooleanField(default=False, verbose_name="مقاله ویژه")
     status=models.CharField(max_length=1,choices=STATUS_CHOICES,verbose_name='حالت')
     comments = GenericRelation(Comment)
+    hint=models.ManyToManyField(IP_Address,related_name='hint',verbose_name='تعداد بازدید',blank=True)
 
     class Meta:
         verbose_name='مقاله'

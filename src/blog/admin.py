@@ -38,3 +38,4 @@ class CatagoryManager(admin.ModelAdmin):
 
 admin.site.register(models.Article,ArticleManager)
 admin.site.register(models.Catagory,CatagoryManager)
+admin.site.register(models.IP_Address)
