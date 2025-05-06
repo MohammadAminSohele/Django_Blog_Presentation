@@ -56,7 +56,7 @@ class Article(models.Model):
     is_special = models.BooleanField(default=False, verbose_name="مقاله ویژه")
     status=models.CharField(max_length=1,choices=STATUS_CHOICES,verbose_name='حالت')
     comments = GenericRelation(Comment)
-    hint=models.ManyToManyField(IP_Address,through='Article_Hint',related_name='hint',verbose_name='تعداد بازدید',blank=True)
+    hits=models.ManyToManyField(IP_Address,through='Article_Hits',related_name='hits',verbose_name='تعداد بازدید',blank=True)
 
     class Meta:
         verbose_name='مقاله'
@@ -82,7 +82,7 @@ class Article(models.Model):
     
     objects=ArticleManager()
     
-class Article_Hint(models.Model):
+class Article_Hits(models.Model):
     article=models.ForeignKey(Article,on_delete=models.CASCADE)
     ip_address=models.ForeignKey(IP_Address,on_delete=models.CASCADE)
     created=models.DateTimeField(auto_now_add=True,verbose_name='تاریخ ساخت')

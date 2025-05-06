@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView,DetailView
+from django.db.models import Count, Q
 
 from .models import Article,Catagory
 from account.models import User
@@ -21,11 +22,12 @@ class AuthorList(ListView):
         return context
     
 class ArticleList(ListView):
-    paginate_by=3
-    template_name='blog/article_list.html'
+    paginate_by = 3
+    template_name = 'blog/article_list.html'
+    paginate_by = 3
     def get_queryset(self):
         global articles
-        articles=Article.objects.published()
+        articles=Article.objects.published().annotate(count=Count('hits')).order_by('-count','-published')
         return articles
     def get_context_data(self, **kwargs) -> dict[str]:
         context = super().get_context_data(**kwargs)
@@ -37,8 +39,8 @@ class ArticleDetail(DetailView):
         slug=self.kwargs.get('slug')
         article= get_object_or_404(Article.objects.published(),slug=slug)
         ip_address = self.request.user.IP_address
-        if not ip_address in article.hint.all():
-            article.hint.add(ip_address)
+        if not ip_address in article.hits.all():
+            article.hits.add(ip_address)
         return article
 
 class ArticlePreView(Author_Access_Mixin,DetailView):
