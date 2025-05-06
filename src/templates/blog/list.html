@@ -48,7 +48,7 @@
                 <a href="{% url 'blog:Articles_By_catagory' cat.slug %}">#{{cat.title}}</a>
               {% endfor %}
             </div>
-            <div>بازدیدها: {{article.hint.count}}</div>
+            <div>بازدیدها: {{article.hits.count}}</div>
           </div>
           <hr>
         {% endfor %}
