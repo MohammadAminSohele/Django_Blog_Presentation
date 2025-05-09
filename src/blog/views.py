@@ -1,7 +1,5 @@
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView,DetailView
-from django.db.models import Count, Q
-from datetime import timedelta , datetime
 
 from .models import Article,Catagory
 from account.models import User
@@ -27,8 +25,7 @@ class ArticleList(ListView):
     template_name = 'blog/article_list.html'
     def get_queryset(self):
         global articles
-        last_month = datetime.today() - timedelta(30)
-        articles=Article.objects.published().annotate(count=Count('hits'),filter=Q(article_hits__created__gt=last_month)).order_by('-count','-published')
+        articles=Article.objects.published()
         return articles
     def get_context_data(self, **kwargs) -> dict[str]:
         context = super().get_context_data(**kwargs)
