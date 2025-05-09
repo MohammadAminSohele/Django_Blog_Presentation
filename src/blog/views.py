@@ -28,7 +28,7 @@ class Search_List(ListView):
     def get_queryset(self):
         global query
         query = self.request.GET.get('q')
-        return Article.objects.filter(Q(description__icontains = query ) | Q(title__icontains = query ) ).published()
+        return Article.objects.published().filter(Q(description__icontains = query ) | Q(title__icontains = query ) )
     def get_context_data(self, **kwargs) -> dict[str]:
         context = super().get_context_data(**kwargs)
         context["search"] = query
