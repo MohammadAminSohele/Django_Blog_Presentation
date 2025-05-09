@@ -57,6 +57,8 @@
             <div>بازدیدها: {{article.hits.count}}</div>
           </div>
           <hr>
+        {% empty %}
+          <p>متاسفانه محتوایی برای نمایش وجود ندارد.</p>          
         {% endfor %}
         <!-- Pager -->
         {% if is_paginated %}

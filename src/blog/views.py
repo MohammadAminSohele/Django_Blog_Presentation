@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView,DetailView
+from django.db.models import Q
 
 from .models import Article,Catagory
 from account.models import User
@@ -18,6 +19,19 @@ class AuthorList(ListView):
     def get_context_data(self, **kwargs) -> dict[str]:
         context = super().get_context_data(**kwargs)
         context["author"] = author
+        return context
+
+class Search_List(ListView):
+    paginate_by=1
+    template_name='blog/Search_List.html' 
+
+    def get_queryset(self):
+        global query
+        query = self.request.GET.get('q')
+        return Article.objects.filter(Q(description__icontains = query ) | Q(title__icontains = query ) )
+    def get_context_data(self, **kwargs) -> dict[str]:
+        context = super().get_context_data(**kwargs)
+        context["search"] = query
         return context
     
 class ArticleList(ListView):
