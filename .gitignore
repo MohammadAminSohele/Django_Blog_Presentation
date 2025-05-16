@@ -128,3 +128,4 @@ src/db.sqlite3
 /src/account/migrations
 /src/blog/migrations
 /media
+/frontend/node_modules
