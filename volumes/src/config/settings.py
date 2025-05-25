@@ -33,7 +33,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -56,7 +56,6 @@ INSTALLED_APPS = [
     'blog',
     'account',
     'comment',
-    'ecomerce',
 ]
 
 MIDDLEWARE = [
@@ -163,5 +162,7 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = config('EMAIL_PORT')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+
+CSRF_TRUSTED_ORIGINS = ['http://185.213.165.147']
 
 STAR_RATINGS_STAR_HEIGHT = 16

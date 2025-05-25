@@ -1,0 +1,24 @@
+version: "3.7"
+services:
+  app:
+    build: '.'
+    container_name: 'app'
+    restart: 'always'
+    expose:
+      - '8000'
+    env_file:
+      - "./.env"
+  nginx:
+    build: './nginx'
+    container_name: 'nginx'
+    restart: 'always'
+    ports:
+      - '80:80'
+    volumes:
+      - type: 'bind'
+        source: './volumes/media'
+        target: '/src/media'
+
+      - type: 'bind'
+        source: './volumes/static'
+        target: '/src/static'
