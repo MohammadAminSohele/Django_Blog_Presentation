@@ -18,7 +18,3 @@ services:
       - type: 'bind'
         source: './volumes/media'
         target: '/src/media'
-
-      - type: 'bind'
-        source: './volumes/static'
-        target: '/src/static'
